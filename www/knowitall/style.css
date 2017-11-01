@@ -1,0 +1,69 @@
+h1, h2{margin: 0 auto; text-align: center;}
+h1{font-size: 10vh; padding-top: 8vh;}
+h2{padding-bottom: 6vh}
+ul{list-style: none; padding: 0; margin: 14px}
+a:not(.signup-link){display: block;}
+a{color: rgba(0, 0, 0, 0.6)}
+a:hover{color: #000}
+blockquote{margin: 0;}
+
+/* Custom classes */
+.surveylink a:hover{box-shadow: inset -1px -1px 1px 2px #aaa;}
+.surveylink a:not(:hover){box-shadow: inset 0 0 0 1px #aaa;}
+.search-bar input[type="text"]{width: 70% !important;}
+.login-padding{padding: 0 20vw}
+.signup-link{padding: 0 1vw;}
+.float-right{float: right}
+.master-center{margin: 0 auto !important; text-align: center !important;}
+.link-btn{padding: 0 !important;}
+.link-btn a{padding: .78571429em 1.5em;}
+.disinline{display: inline !important;}
+.fluid{width: 100%;}
+.surveycard{border: 1px solid #aaa}
+.newoption{width: 15vw !important; margin-right: 5px !important;}
+.no-more:not(.active){display: none !important;}
+.no-more.active{display: block !important;}
+.option{width: 15vw !important; margin-right: 5px !important; border: 0 !important;}
+.clearfloat{clear: both !important;}
+.chart_div{border: 1px solid #000;}
+.delete-poll{display: block !important;}
+
+.valid-email.active{display: block !important;}
+.valid-email:not(.active){display: none !important;}
+.valid-id.active{display: block !important;}
+.valid-id:not(.active){display: none !important;}
+
+
+.comment-section span.header{padding: 0; font-size: 1.5rem; font-weight: 500}
+.comment-section .comments{display: block; padding: 0 4vw; word-wrap: break-word;}
+.comment-section .header.row{padding: 0 !important;}
+.comment-section .row:not(.header){padding: 0 !important;}
+.comment-section .ui.grid{padding: 2vh 2vw; max-width: 75vw}
+.comment-section .comment-time{padding-left: 1vw; color: #999}
+.comment-section .commenter{font-weight: 700;}
+.comment-section .ui.form{margin-top: 4em; padding: 0 2vw}
+.comment-section input{margin-right: 1em !important;}
+
+.custom-pad-hor{padding-left: 4vw !important; padding-right: 4vw !important;}
+.custom-pad-vert-small{padding-top: 1vh !important; padding-bottom: 1vh !important;}
+.custom-pad-vert{padding-top: 4vh !important; padding-bottom: 4vh !important;}
+.custom-pad-vert-big{padding-top: 20vh !important; padding-bottom: 20vh !important;}
+.custom-pad-top{padding-top: 4vh !important;}
+
+.custom-margin-hor-tiny{margin-left: 1vw !important; margin-right: 2vw !important;}
+.custom-margin-hor-small{margin-left: 4vw !important; margin-right: 4vw !important;}
+.custom-margin-hor{margin-left: 12vw !important; margin-right: 12vw !important;}
+.custom-margin-vert-small{margin-top: 4vh !important; margin-bottom: 4vh !important;}
+.custom-margin-vert{margin-top: 12vh !important; margin-bottom: 12vh !important;}
+.custom-margin-bot-small{margin-bottom: 4vh !important;}
+
+
+/*Semantic Override*/
+.ui.grid{margin: 0;}
+.ui.menu{margin: 0; border:none; box-shadow: none;}
+.ui.massive.button{font-size: 3rem;}
+.ui.form .field{margin-bottom: 4em !important;}
+.ui.form{margin-bottom: 4em;}
+.ui.radio~label{font-size: 1.5rem !important;}
+.blurring.dimmable>.dimmer{background-color: rgba(0,0,0,0.8) !important;}
+.blurring.dimmed.dimmable>:not(.dimmer){filter: blur(20px) grayscale(0.7) !important;}
