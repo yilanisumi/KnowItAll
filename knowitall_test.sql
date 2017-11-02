@@ -2,8 +2,8 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 17, 2017 at 05:36 AM
+-- Host: localhost
+-- Generation Time: Nov 02, 2017 at 02:19 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -21,19 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `knowitall_test`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `search_temp`
---
-
-CREATE TABLE `search_temp` (
-  `user_id` varchar(45) CHARACTER SET utf8 NOT NULL,
-  `survey_id` varchar(45) CHARACTER SET utf8 NOT NULL,
-  `create_time` varchar(45) CHARACTER SET utf8 NOT NULL,
-  `voter_number` int(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -118,7 +105,8 @@ INSERT INTO `user` (`user_id`, `usc_email`, `usc_id`, `password`, `user_name`) V
 CREATE TABLE `user_survey` (
   `user_id` varchar(45) NOT NULL,
   `survey_id` varchar(45) NOT NULL,
-  `option_id` int(45) NOT NULL
+  `option_id` int(45) NOT NULL,
+  `anonymity` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
