@@ -12,6 +12,38 @@
     <?php include("all-css.php");?>
   </head>
 
+  <?php
+    // process frequent search terms 
+      include("database-connector.php");
+
+    $searchResults = $_GET['search']; 
+    $searchResults = ltrim($searchResults); // remove whitespace from beginning of searchResults string
+    $searchResults = rtrim($searchResults); // remove whitespace from end of searchResults string
+    $searchTerms = preg_split('/\s+/', $searchResults);
+    $numSearchTerms = sizeof($searchTerms);
+    for($i = 0; $i < $numSearchTerms; $i++)
+    {
+      // check if the search term is in the frequent_search table
+      $sql = $conn->prepare("SELECT * FROM frequent_search WHERE search = ?;");
+      $sql->bind_param('s', $searchTerms[$i]);
+      $sql->execute();
+      $ans = $sql->get_result();
+      $numSearch = $ans->num_rows;
+
+      // search term exists in frequent_search table, increment its freq value
+      if($numSearch > 0) {
+        $sql = $conn->prepare("UPDATE frequent_search SET freq = freq + 1 WHERE search = ?;");
+        $sql->bind_param('s', $searchTerms[$i]);
+        $sql->execute();  
+      }
+      // search term does not exist in frequent_search table, insert it
+      else {
+        $sql = $conn->prepare("INSERT INTO frequent_search (search, freq) VALUES (\"" .$searchTerms[$i]."\", 1);");
+        $sql->execute();
+      }
+    }
+  ?>
+
   <body>
     <?php include("small-header.php") ?>
     <form class="ui form search-bar custom-pad-hor master-center custom-pad-vert" action="search-results.php" method="get" id="search">
@@ -19,6 +51,9 @@
       <button class="ui button" type="submit" form="search" value="Submit">Search</button>
       <button class="ui button link-btn"><a href="create.php">Create New Survey</a></button>
     </form>
+
+    $searchResults = <?php $_GET['search'] ?>;
+    <h1>$searchResults</h1>
 
     <span class="custom-pad-vert custom-pad-hor">Search Results For: <?php echo $_GET['search'] ?></span>
     <div class="float-right custom-pad-hor custom-pad-vert">

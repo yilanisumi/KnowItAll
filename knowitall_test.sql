@@ -84,7 +84,7 @@ CREATE TABLE `user` (
   `user_id` varchar(45) NOT NULL,
   `usc_email` varchar(45) NOT NULL,
   `usc_id` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `user_name` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -107,6 +107,24 @@ CREATE TABLE `user_survey` (
   `survey_id` varchar(45) NOT NULL,
   `option_id` int(45) NOT NULL,
   `anonymity` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `frequent_search`
+--
+
+CREATE TABLE `frequent_search` (
+  `search` varchar(45) NOT NULL,
+  `freq` int(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `frequent_tag`
+--
+
+CREATE TABLE `frequent_tag` (
+  `tag` varchar(45) NOT NULL,
+  `freq` int(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

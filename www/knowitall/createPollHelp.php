@@ -10,7 +10,36 @@
   $stime = date("Y-m-d", time());
   $opts = $_POST["options"];
 
+  // process frequent tags 
   include("database-connector.php");
+  
+  $tagResults = $_POST['tags']; 
+  $tagResults = ltrim($tagResults); // remove whitespace from beginning of tagResults string
+  $tagResults = rtrim($tagResults); // remove whitespace from end of tagResults string
+  $tagTerms = preg_split('/\s+/', $tagResults);
+  $numTags = sizeof($tagTerms);
+  for($i = 0; $i < $numTags; $i++)
+  {
+    // check if the tag is in the frequent_tag table
+    $sql = $conn->prepare("SELECT * FROM frequent_tag WHERE tag = ?;");
+    $sql->bind_param('s', $tagTerms[$i]);
+    $sql->execute();
+    $ans = $sql->get_result();
+    $numSearch = $ans->num_rows;
+
+    // tag exists in frequent_tag table, increment its freq value
+    if($numSearch > 0) {
+      $sql = $conn->prepare("UPDATE frequent_tag SET freq = freq + 1 WHERE tag = ?;");
+      $sql->bind_param('s', $tagTerms[$i]);
+      $sql->execute();  
+    }
+    // tag does not exist in frequent_tag table, insert it
+    else {
+      $sql = $conn->prepare("INSERT INTO frequent_tag (tag, freq) VALUES (\"" .$tagTerms[$i]."\", 1);");
+      $sql->execute();
+    }
+  }
+  
   $sql = $conn->prepare("SELECT survey_id FROM survey WHERE survey_id LIKE \"P%\" ORDER BY survey_id DESC LIMIT 1;");
   $sql->execute();
   $ans = $sql->get_result();
