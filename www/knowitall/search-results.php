@@ -76,7 +76,7 @@
           $ans = $sql->get_result();
           for($i = 0; $i < $ans->num_rows; $i++){
             $row = $ans->fetch_assoc();
-            echo "<span class=\"custom-pad-hor-small\">".$row['search']."<\span>";
+            echo "<span class=\"custom-pad-hor-small\">".$row['search']."</span>";
           }
         ?>
       </div>
@@ -88,7 +88,7 @@
           $ans = $sql->get_result();
           for($i = 0; $i < $ans->num_rows; $i++){
             $row = $ans->fetch_assoc();
-            echo "<span class=\"custom-pad-hor-small\">".$row['tag']."<\span>";
+            echo "<span class=\"custom-pad-hor-small\">".$row['tag']."</span>";
           }
         ?>
       </div>
