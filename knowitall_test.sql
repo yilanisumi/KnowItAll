@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2017 at 02:27 AM
+-- Generation Time: Nov 06, 2017 at 03:20 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -44,6 +44,17 @@ CREATE TABLE `frequent_tag` (
   `freq` int(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `frequent_tag`
+--
+
+INSERT INTO `frequent_tag` (`tag`, `freq`) VALUES
+('Admin', 4),
+('Poll', 2),
+('1', 3),
+('Rating', 2),
+('2', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -80,7 +91,7 @@ CREATE TABLE `survey` (
 
 INSERT INTO `survey` (`survey_id`, `survey_title`, `user_id`, `rating_average`, `create_time`, `survey_tags`, `voter_number`) VALUES
 ('P0000000001', 'Admin Poll 1', '9999999999', 0, '2017-11-05', ' Admin Poll 1', 0),
-('P0000000002', 'Admin Poll 2', '9999999999', 0, '2017-11-05', ' Admin Poll 2', 0),
+('P0000000002', 'Admin Poll 1', '9999999999', 0, '2017-11-05', ' Admin Poll 1', 0),
 ('R0000000001', 'Admin Rating 1', '9999999999', 0, '2017-11-05', ' Admin Rating 1', 0),
 ('R0000000002', 'Admin Rating 2', '9999999999', 0, '2017-11-05', ' Admin Rating 2', 0);
 
@@ -128,9 +139,6 @@ INSERT INTO `survey_options` (`survey_id`, `option_id`, `option_string`, `voter_
 ('R0000000001', 8, '', 0),
 ('R0000000001', 9, '', 0),
 ('R0000000001', 10, '', 0),
-('P0000000002', 1, 'a', 0),
-('P0000000002', 2, 'b', 0),
-('P0000000002', 3, 'c', 0),
 ('R0000000002', 1, '', 0),
 ('R0000000002', 2, '', 0),
 ('R0000000002', 3, '', 0),
@@ -140,7 +148,10 @@ INSERT INTO `survey_options` (`survey_id`, `option_id`, `option_string`, `voter_
 ('R0000000002', 7, '', 0),
 ('R0000000002', 8, '', 0),
 ('R0000000002', 9, '', 0),
-('R0000000002', 10, '', 0);
+('R0000000002', 10, '', 0),
+('P0000000002', 1, 'a', 0),
+('P0000000002', 2, 'v', 0),
+('P0000000002', 3, 'd', 0);
 
 -- --------------------------------------------------------
 
@@ -159,8 +170,8 @@ CREATE TABLE `trending_survey` (
 INSERT INTO `trending_survey` (`survey_id`) VALUES
 ('P0000000001'),
 ('R0000000001'),
-('P0000000002'),
-('R0000000002');
+('R0000000002'),
+('P0000000002');
 
 -- --------------------------------------------------------
 
