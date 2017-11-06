@@ -1,6 +1,19 @@
 <?php
   session_start();
   session_unset();
+  if(!isset($_SESSION['id']) && !isset($_SESSION['gid'])){
+    include("database-connector.php");
+    $sql = $conn->prepare("SELECT user_id FROM search_temp WHERE user_id LIKE \"-%\" ORDER BY user_id DESC LIMIT 1;");
+    $sql->execute();
+    $ans = $sql->get_result();
+    $gid = $ans->fetch_assoc();
+    $gid = intval($gid['user_id']);
+    //echo $gid;
+    //echo "<br>";
+    $gid -= 1;
+    $_SESSION['gid'] = $gid;
+    //echo $gid;
+  }
 ?>
 
 <!DOCTYPE html>
