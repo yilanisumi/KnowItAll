@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2017 at 02:13 AM
+-- Generation Time: Nov 06, 2017 at 02:27 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -74,6 +74,16 @@ CREATE TABLE `survey` (
   `voter_number` int(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `survey`
+--
+
+INSERT INTO `survey` (`survey_id`, `survey_title`, `user_id`, `rating_average`, `create_time`, `survey_tags`, `voter_number`) VALUES
+('P0000000001', 'Admin Poll 1', '9999999999', 0, '2017-11-05', ' Admin Poll 1', 0),
+('P0000000002', 'Admin Poll 2', '9999999999', 0, '2017-11-05', ' Admin Poll 2', 0),
+('R0000000001', 'Admin Rating 1', '9999999999', 0, '2017-11-05', ' Admin Rating 1', 0),
+('R0000000002', 'Admin Rating 2', '9999999999', 0, '2017-11-05', ' Admin Rating 2', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -100,6 +110,38 @@ CREATE TABLE `survey_options` (
   `voter_number` int(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `survey_options`
+--
+
+INSERT INTO `survey_options` (`survey_id`, `option_id`, `option_string`, `voter_number`) VALUES
+('P0000000001', 1, '1', 0),
+('P0000000001', 2, '2', 0),
+('P0000000001', 3, '3', 0),
+('R0000000001', 1, '', 0),
+('R0000000001', 2, '', 0),
+('R0000000001', 3, '', 0),
+('R0000000001', 4, '', 0),
+('R0000000001', 5, '', 0),
+('R0000000001', 6, '', 0),
+('R0000000001', 7, '', 0),
+('R0000000001', 8, '', 0),
+('R0000000001', 9, '', 0),
+('R0000000001', 10, '', 0),
+('P0000000002', 1, 'a', 0),
+('P0000000002', 2, 'b', 0),
+('P0000000002', 3, 'c', 0),
+('R0000000002', 1, '', 0),
+('R0000000002', 2, '', 0),
+('R0000000002', 3, '', 0),
+('R0000000002', 4, '', 0),
+('R0000000002', 5, '', 0),
+('R0000000002', 6, '', 0),
+('R0000000002', 7, '', 0),
+('R0000000002', 8, '', 0),
+('R0000000002', 9, '', 0),
+('R0000000002', 10, '', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -109,6 +151,16 @@ CREATE TABLE `survey_options` (
 CREATE TABLE `trending_survey` (
   `survey_id` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `trending_survey`
+--
+
+INSERT INTO `trending_survey` (`survey_id`) VALUES
+('P0000000001'),
+('R0000000001'),
+('P0000000002'),
+('R0000000002');
 
 -- --------------------------------------------------------
 
@@ -129,8 +181,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `usc_email`, `usc_id`, `password`, `user_name`) VALUES
-('1111111111', 'test@usc.edu', '1111111111', 'test', 'testing'),
-('9999999999', 'admin@usc.edu', '9999999999', 'admin', 'admin');
+('1111111111', 'test@usc.edu', '1111111111', '$2y$10$/2zSV5Qqkzu7RkLLrlU7juvSANfP8mN9gKGTQm67mpv1rCMHq0vMS', 'test'),
+('9999999999', 'admin@usc.edu', '9999999999', '$2y$10$TEuBsosxDzTFJO11b.VnCO4UJ.WfPjLgoACZpjKN9VIyb2AVGD/x6', 'admin');
 
 -- --------------------------------------------------------
 
