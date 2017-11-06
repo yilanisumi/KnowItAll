@@ -1,6 +1,6 @@
 <div class="field">
   <div class="ui radio checkbox">
-    <input <?php if(!empty($resrow) && $resrow['option_id'] == ($i+1)){echo "checked=\"checked\" ";} ?> class="ui radio" type="radio" name="radio" <?php if(!empty($resrow)){echo "readonly";} ?>><label><?php echo $optionrow['option_string']; ?></label>
+    <input <?php if(!empty($resrow) && $resrow['option_id'] == ($i+1)){echo "checked=\"checked\" ";} ?> class="ui radio" type="radio" name="radio"><label><?php echo $optionrow['option_string']; ?></label>
     <?php 
       $sql = $conn->prepare("SELECT * FROM survey_options WHERE survey_id = ? AND option_id = ?");
       $i1 = $i+1;

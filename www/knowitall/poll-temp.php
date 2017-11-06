@@ -34,9 +34,7 @@
   </div> -->
 
   <?php 
-    if(empty($resrow)){
-      include("survey-submit.php");
-    }
+    include("survey-submit.php");
   ?>
 </form>
 
