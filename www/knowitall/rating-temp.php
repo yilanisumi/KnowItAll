@@ -10,13 +10,11 @@
 ?>
 <form class="ui fluid form master-center" action="rateHelper.php?surveyid=<?php echo $id ?>" method="post">
   <div class="field">
-    <div class="ui massive star rating <?php if(!empty($resrow)){echo "readonly";} ?> " data-rating=" <?php if(!empty($resrow)){echo $resrow["option_id"];} ?> " data-max-rating="10"></div>
+    <div class="ui massive star rating" data-rating=" <?php if(!empty($resrow)){echo $resrow["option_id"];} ?> " data-max-rating="10"></div>
     <input type="hidden" name="rating" value="0">
   </div>
 
   <?php 
-    if(empty($resrow)){
       include("survey-submit.php");
-    }
   ?>
 </form>
