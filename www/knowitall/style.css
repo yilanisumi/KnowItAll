@@ -18,7 +18,7 @@ blockquote{margin: 0;}
 .link-btn{padding: 0 !important;}
 .link-btn a{padding: .78571429em 1.5em;}
 .disinline{display: inline !important;}
-.fluid{width: 100%;}
+.fluid{width: 100% !important;}
 .surveycard{border: 1px solid #aaa}
 .newoption{width: 15vw !important; margin-right: 5px !important;}
 .no-more:not(.active){display: none !important;}
@@ -45,6 +45,7 @@ blockquote{margin: 0;}
 .comment-section input{margin-right: 1em !important;}
 
 .custom-pad-hor{padding-left: 4vw !important; padding-right: 4vw !important;}
+.custom-pad-hor-small{padding-left: 1vw !important; padding-right: 1vw !important;}
 .custom-pad-vert-small{padding-top: 1vh !important; padding-bottom: 1vh !important;}
 .custom-pad-vert{padding-top: 4vh !important; padding-bottom: 4vh !important;}
 .custom-pad-vert-big{padding-top: 20vh !important; padding-bottom: 20vh !important;}
@@ -67,3 +68,5 @@ blockquote{margin: 0;}
 .ui.radio~label{font-size: 1.5rem !important;}
 .blurring.dimmable>.dimmer{background-color: rgba(0,0,0,0.8) !important;}
 .blurring.dimmed.dimmable>:not(.dimmer){filter: blur(20px) grayscale(0.7) !important;}
+
+.ui.grid .row>.column{padding: 0 !important;}

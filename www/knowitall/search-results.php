@@ -67,6 +67,32 @@
       <button class="ui button link-btn"><a href="create.php">Create New Survey</a></button>
     </form>
 
+    <div class="ui grid">
+       <div class="row custom-pad-hor">
+        <span>Frequent Searches: </span>
+        <?php 
+          $sql = $conn->prepare("SELECT * FROM frequent_search ORDER BY freq DESC LIMIT 5;");
+          $sql->execute();
+          $ans = $sql->get_result();
+          for($i = 0; $i < $ans->num_rows; $i++){
+            $row = $ans->fetch_assoc();
+            echo "<span class=\"custom-pad-hor-small\">".$row['search']."<span>";
+          }
+        ?>
+      </div>
+      <div class="row custom-pad-hor custom-margin-bot-small">
+        <span>Frequent Tags: </span>
+        <?php 
+          $sql = $conn->prepare("SELECT * FROM frequent_tag ORDER BY freq DESC LIMIT 5;");
+          $sql->execute();
+          $ans = $sql->get_result();
+          for($i = 0; $i < $ans->num_rows; $i++){
+            $row = $ans->fetch_assoc();
+            echo "<span class=\"custom-pad-hor-small\">".$row['tag']."<span>";
+          }
+        ?>
+      </div>
+    </div>
     <span class="custom-pad-vert custom-pad-hor">Search Results For: <?php echo $_GET['search'] ?></span>
     <div class="float-right custom-pad-hor custom-pad-vert">
       <span class="disinline">Sort:</span>

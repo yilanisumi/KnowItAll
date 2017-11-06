@@ -1,7 +1,7 @@
 <?php 
   session_start();
+  include("database-connector.php");
   if(!isset($_SESSION['id']) && !isset($_SESSION['gid'])){
-    include("database-connector.php");
     $sql = $conn->prepare("SELECT user_id FROM search_temp WHERE user_id LIKE \"-%\" ORDER BY user_id DESC LIMIT 1;");
     $sql->execute();
     $ans = $sql->get_result();
@@ -30,12 +30,36 @@
     <?php include('big-header.php');?>
 
     <form class="ui form search-bar custom-pad-hor master-center custom-pad-vert" action="search-results.php" method="get" id="search">
-      <input class="custom-margin-bot-small" type="text" placeholder="Search..." name="search" required="true">
+      <input class="" type="text" placeholder="Search..." name="search" required="true">
       <button class="ui button" type="submit" form="search" value="Submit">Search</button>
       <button class="ui button link-btn"><a href="create.php">Create New Survey</a></button>
     </form>
 
     <div class="ui grid">
+     <div class="row custom-pad-hor">
+        <span>Frequent Searches: </span>
+        <?php 
+          $sql = $conn->prepare("SELECT * FROM frequent_search ORDER BY freq DESC LIMIT 5;");
+          $sql->execute();
+          $ans = $sql->get_result();
+          for($i = 0; $i < $ans->num_rows; $i++){
+            $row = $ans->fetch_assoc();
+            echo "<span class=\"custom-pad-hor-small\">".$row['search']."<span>";
+          }
+        ?>
+      </div>
+      <div class="row custom-pad-hor custom-margin-bot-small">
+        <span>Frequent Tags: </span>
+        <?php 
+          $sql = $conn->prepare("SELECT * FROM frequent_tag ORDER BY freq DESC LIMIT 5;");
+          $sql->execute();
+          $ans = $sql->get_result();
+          for($i = 0; $i < $ans->num_rows; $i++){
+            $row = $ans->fetch_assoc();
+            echo "<span class=\"custom-pad-hor-small\">".$row['tag']."<span>";
+          }
+        ?>
+      </div>
       <div class="two column row">
         <div class="column">
           <span class="custom-pad-hor">Trending Polls</span>
