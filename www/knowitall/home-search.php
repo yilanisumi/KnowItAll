@@ -44,7 +44,7 @@
           $ans = $sql->get_result();
           for($i = 0; $i < $ans->num_rows; $i++){
             $row = $ans->fetch_assoc();
-            echo "<span class=\"custom-pad-hor-small\">".$row['search']."</span>";
+            echo "<a href=\"search-results.php?search=".$row['search']."\"><span class=\"custom-pad-hor-small\">".$row['search']."</span></a>";
           }
         ?>
       </div>
@@ -56,7 +56,7 @@
           $ans = $sql->get_result();
           for($i = 0; $i < $ans->num_rows; $i++){
             $row = $ans->fetch_assoc();
-            echo "<span class=\"custom-pad-hor-small\">".$row['tag']."</span>";
+            echo "<a href=\"search-results.php?search=".$row['tag']."\"><span class=\"custom-pad-hor-small\">".$row['tag']."</span></a>";
           }
         ?>
       </div>
