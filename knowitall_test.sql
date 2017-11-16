@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 06, 2017 at 03:20 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.10
+-- Host: localhost
+-- Generation Time: Nov 16, 2017 at 05:28 AM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -194,6 +194,20 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_id`, `usc_email`, `usc_id`, `password`, `user_name`) VALUES
 ('1111111111', 'test@usc.edu', '1111111111', '$2y$10$/2zSV5Qqkzu7RkLLrlU7juvSANfP8mN9gKGTQm67mpv1rCMHq0vMS', 'test'),
 ('9999999999', 'admin@usc.edu', '9999999999', '$2y$10$TEuBsosxDzTFJO11b.VnCO4UJ.WfPjLgoACZpjKN9VIyb2AVGD/x6', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_page`
+--
+
+CREATE TABLE `user_page` (
+  `user_id` varchar(45) NOT NULL,
+  `action` int(45) NOT NULL,
+  `survey_id` varchar(45) NOT NULL,
+  `option_id` int(45) NOT NULL,
+  `action_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
