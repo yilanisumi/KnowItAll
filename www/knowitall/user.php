@@ -17,7 +17,7 @@
       <span class="custom-margin-vert-small custom-margin-hor-tiny">Email: *****@usc.edu</span>
       <span class="custom-margin-vert-small custom-margin-hor-tiny">USCID: **********</span><br>
       <button class="ui button custom-margin-vert-tiny custom-margin-hor-tiny"><a href="change-password.php">Change Password</a></button>
-      <button class="ui button custom-margin-vert-tiny custom-margin-hor-tiny"><a href="delete-user.php">Delete Account</a></button>
+      <button class="ui button custom-margin-vert-tiny custom-margin-hor-tiny"><a href="delete-user-confirm.php">Delete Account</a></button>
     </h3>
 
     <div class="ui grid">
