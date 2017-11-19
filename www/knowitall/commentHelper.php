@@ -17,5 +17,11 @@
   $sql->bind_param('ssss', $surveyid, $content, $userid, $ctime);
   $sql->execute();
 
+  if($userid != -1){
+    $sql = $conn->prepare("INSERT INTO user_activity (user_id, action, survey_id, option_id, action_time) VALUES (?, 3, ?, -99, ?);");
+    $sql->bind_param('sss', $userid, $surveyid, $ctime);
+    $sql->execute();
+  }
+
   header("Location: survey.php?id=".$surveyid);
 ?>

@@ -1,6 +1,7 @@
 h1, h2{margin: 0 auto; text-align: center;}
 h1{font-size: 10vh; padding-top: 8vh;}
 h2{padding-bottom: 6vh}
+h4{font-size: 1.5rem !important;}
 ul{list-style: none; padding: 0; margin: 14px}
 a:not(.signup-link){display: block;}
 a{color: rgba(0, 0, 0, 0.6)}
@@ -18,6 +19,7 @@ blockquote{margin: 0;}
 .link-btn{padding: 0 !important;}
 .link-btn a{padding: .78571429em 1.5em;}
 .disinline{display: inline !important;}
+.disblock{display: block !important;}
 .fluid{width: 100% !important;}
 .surveycard{border: 1px solid #aaa}
 .newoption{width: 15vw !important; margin-right: 5px !important;}
@@ -33,7 +35,6 @@ blockquote{margin: 0;}
 .valid-id.active{display: block !important;}
 .valid-id:not(.active){display: none !important;}
 
-
 .comment-section span.header{padding: 0; font-size: 1.5rem; font-weight: 500}
 .comment-section .comments{display: block; padding: 0 4vw; word-wrap: break-word;}
 .comment-section .header.row{padding: 0 !important;}
@@ -44,6 +45,7 @@ blockquote{margin: 0;}
 .comment-section .ui.form{margin-top: 4em; padding: 0 2vw}
 .comment-section input{margin-right: 1em !important;}
 
+.custom-pad-hor-space{padding: 0 0.2em !important;}
 .custom-pad-hor{padding-left: 4vw !important; padding-right: 4vw !important;}
 .custom-pad-hor-small{padding-left: 1vw !important; padding-right: 1vw !important;}
 .custom-pad-vert-small{padding-top: 1vh !important; padding-bottom: 1vh !important;}
@@ -54,10 +56,12 @@ blockquote{margin: 0;}
 .custom-margin-hor-tiny{margin-left: 1vw !important; margin-right: 2vw !important;}
 .custom-margin-hor-small{margin-left: 4vw !important; margin-right: 4vw !important;}
 .custom-margin-hor{margin-left: 12vw !important; margin-right: 12vw !important;}
+.custom-margin-vert-tiny{margin-top: 2vh !important; margin-bottom: 2vh !important;}
 .custom-margin-vert-small{margin-top: 4vh !important; margin-bottom: 4vh !important;}
 .custom-margin-vert{margin-top: 12vh !important; margin-bottom: 12vh !important;}
 .custom-margin-bot-small{margin-bottom: 4vh !important;}
 
+.remove-pad-bot{padding-bottom: 0 !important;}
 
 /*Semantic Override*/
 .ui.grid{margin: 0;}

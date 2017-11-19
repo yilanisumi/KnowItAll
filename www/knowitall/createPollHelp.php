@@ -1,5 +1,6 @@
 <?php 
   session_start();
+  date_default_timezone_set('America/Los_Angeles');
   if(!isset($_SESSION['id'])){
     header("Location: home-search.php");
   }
@@ -77,6 +78,11 @@
   }
   $sql = $conn->prepare("INSERT INTO trending_survey (survey_id) VALUES (?);");
   $sql->bind_param('s', $surveyid);
+  $sql->execute();
+
+  $rtime = date("Y-m-d H:i:s");
+  $sql = $conn->prepare("INSERT INTO user_activity (option_id, survey_id, user_id, action_time, action) VALUES (-99, ?, ?, ?, 2);");
+  $sql->bind_param('sss', $surveyid, $userid, $rtime);
   $sql->execute();
 
   header("Location: survey.php?id=".$surveyid);

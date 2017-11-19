@@ -1,3 +1,32 @@
+<?php 
+  session_start();
+  if(isset($_SESSION['id'])){
+    $user = $_SESSION['id'];
+  }
+  include("database-connector.php");
+  $uscid = "-99";
+  if(isset($_GET['id'])){
+    $uscid = $_GET['id'];
+  }else{
+    header("Location: login.php");
+  }
+  $sql = $conn->prepare("SELECT * FROM user WHERE user_id = ?;");
+  $sql->bind_param('s', $uscid);
+  $sql->execute();
+  $ans = $sql->get_result();
+  $urow = $ans->fetch_assoc();
+
+  $sql = $conn->prepare("SELECT * FROM survey WHERE user_id = ?;");
+  $sql->bind_param('s', $uscid);
+  $sql->execute();
+  $ans2 = $sql->get_result();
+
+  $sql = $conn->prepare("SELECT * FROM user_activity WHERE user_id = ? ORDER BY action_time DESC;");
+  $sql->bind_param('s', $uscid);
+  $sql->execute();
+  $ans3 = $sql->get_result();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,29 +41,53 @@
 
   <body>
     <?php include("small-header.php") ?>
-    <h1 class="custom-pad-hor">User Name</h1>
+    <h1 class="custom-pad-hor"><u><?php echo $urow['user_name']; ?></u></h1>
     <h3 class="custom-pad-hor custom-pad-vert master-center">
-      <span class="custom-margin-vert-small custom-margin-hor-tiny">Email: *****@usc.edu</span>
-      <span class="custom-margin-vert-small custom-margin-hor-tiny">USCID: **********</span><br>
-      <button class="ui button custom-margin-vert-tiny custom-margin-hor-tiny"><a href="change-password.php">Change Password</a></button>
-      <button class="ui button custom-margin-vert-tiny custom-margin-hor-tiny"><a href="delete-user-confirm.php">Delete Account</a></button>
+      <span class="custom-margin-vert-small custom-margin-hor-tiny">Email: 
+        <?php
+          if(isset($_SESSION['id']) && strcmp($uscid, $user) == 0){
+            echo $urow['usc_email']; 
+          }else{
+            echo "******@usc.edu";
+          }
+        ?>
+       </span>
+      <span class="custom-margin-vert-small custom-margin-hor-tiny">USCID: 
+        <?php
+          if(isset($_SESSION['id']) && strcmp($uscid, $user) == 0){
+            echo $urow['usc_id']; 
+          }else{
+            echo "**********";
+          }
+        ?>
+      </span><br>
+      <?php 
+        if(isset($_SESSION['id']) && strcmp($uscid, $user) == 0){
+          echo "<button class=\"ui button custom-margin-vert-tiny custom-margin-hor-tiny\"><a href=\"change-password.php\">Change Password</a></button>
+            <button class=\"ui button custom-margin-vert-tiny custom-margin-hor-tiny\"><a href=\"delete-user-confirm.php\">Delete Account</a></button>";
+        }
+      ?>
     </h3>
 
     <div class="ui grid">
       <div class="equal width row">
         <ul class="column">
           <li class="row header custom-pad-hor"><h4>Activity Log:</h4></li>
-          <li class="row surveylink custom-pad-hor custom-pad-top">
-            <a href="">
-              <div class="ui grid">
-                <div class="row custom-pad-hor-small">Voted * on Poll (P9999999999)</div>
-              </div>
-            </a>
-          </li>
+          <?php 
+            for($i = 0; $i < $ans3->num_rows; $i++){
+              $arow = $ans3->fetch_assoc();
+              include('activity-card.php');
+            }
+          ?>
         </ul>
         <ul class="column">
           <li class="row header custom-pad-hor"><h4>My Surveys:</h4></li>
-          <?php include("result-card.php") ?>
+          <?php
+            for($i = 0; $i < $ans2->num_rows; $i++){
+              $srow = $ans2->fetch_assoc();
+              include('result-card.php');
+            }
+          ?>
         </ul>
       </div>
     </div>

@@ -1,5 +1,6 @@
 <?php 
   session_start();
+  date_default_timezone_set('America/Los_Angeles');
   $numopts = $_POST['numopts'];
   $surveyid = $_GET['surveyid'];
   $userid = $_SESSION['id'];
@@ -52,7 +53,6 @@
       $sql = $conn->prepare("INSERT INTO user_survey (option_id, survey_id, user_id) VALUES (?, ?, ?);");
       $sql->bind_param('iss', $selectionid, $surveyid, $userid);
       $sql->execute();
-
      
       $sql = $conn->prepare("UPDATE survey_options SET voter_number = voter_number - 1 WHERE survey_id = ? AND option_id = ?;");
       $sql->bind_param('si', $surveyid, $tmp);
@@ -61,6 +61,26 @@
       $sql = $conn->prepare("UPDATE survey_options SET voter_number = voter_number + 1 WHERE survey_id = ? AND option_id = ?;");
       $sql->bind_param('si', $surveyid, $selectionid);
       $sql->execute();
+  }
+
+  $sql = $conn->prepare("SELECT * FROM user_activity WHERE user_id = ? AND survey_id = ?;");
+  $sql->bind_param('ss', $userid, $surveyid);
+  $sql->execute();
+  $resans = $sql->get_result();
+  $resrow = $resans->fetch_assoc();
+
+  if(empty($_POST["anon"])){
+    if(empty($resrow)) {
+      $rtime = date("Y-m-d H:i:s");
+      $sql = $conn->prepare("INSERT INTO user_activity (option_id, survey_id, user_id, action_time, action) VALUES (?, ?, ?, ?, 0);");
+      $sql->bind_param('ssss', $selectionid, $surveyid, $userid, $rtime);
+      $sql->execute();
+    }else{
+      $rtime = date("Y-m-d H:i:s");
+      $sql = $conn->prepare("UPDATE user_activity SET option_id = ?, action_time = ? WHERE survey_id = ?;");
+      $sql->bind_param('iss', $selectionid, $rtime, $surveyid);
+      $sql->execute();
+    }
   }
 }
   

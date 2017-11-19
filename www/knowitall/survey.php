@@ -49,7 +49,7 @@
           <div class="twelve wide column"><?php echo $row['survey_title']; ?> (<?php echo $id; ?>)</div>
           <div class="four wide column"><span class="float-right">Responses: <?php echo $row['voter_number'] ?></span></div>
           <div class="eight wide column">Created: <?php echo $row['create_time'] ?></div>
-          <div class="eight wide column"><span class="float-right">Creator: <?php echo $creator ?></span></div>
+          <div class="eight wide column"><a href="user.php?id=<?php echo $row["user_id"] ?>"><span class="float-right">Creator: <?php echo $creator ?></span></a></div>
           <div class="sixteen wide column"><span>Tags: <?php echo $row['survey_tags'] ?></span></div>
         </div>
       </div>
