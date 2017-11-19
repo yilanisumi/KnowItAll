@@ -201,7 +201,7 @@ INSERT INTO `user` (`user_id`, `usc_email`, `usc_id`, `password`, `user_name`) V
 -- Table structure for table `user_page`
 --
 
-CREATE TABLE `user_page` (
+CREATE TABLE `user_activity` (
   `user_id` varchar(45) NOT NULL,
   `action` int(45) NOT NULL,
   `survey_id` varchar(45) NOT NULL,

@@ -18,6 +18,10 @@
   </head>
   <body>
     <?php include('big-header.php');?>
+    <?php
+      if(!empty($_GET['fail'])) 
+        $failed = $_GET['fail'];
+    ?>
     <div class="ui error message master-center custom-margin-hor custom-margin-bot-small <?php if(empty($failed)){echo "hidden";} ?>">
       <p>The Information You Entered Was Invalid</p>
     </div>
