@@ -27,6 +27,11 @@
   </head>
   <body>
     <button class="ui button float-right link-btn"><a class="float-right" href="login.php"><?php include("login-out.php"); ?></a></button>
+    <?php
+      if(isset($_SESSION['id'])){
+        echo"<button class=\"ui button link-btn float-right\"><a href=\"user.php?id=".$_SESSION['id']."\">Profile</a></button>";
+      }
+    ?>
     <?php include('big-header.php');?>
 
     <form class="ui form search-bar custom-pad-hor master-center custom-pad-vert" action="search-results.php" method="get" id="search">

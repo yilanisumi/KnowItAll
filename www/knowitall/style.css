@@ -74,3 +74,4 @@ blockquote{margin: 0;}
 .blurring.dimmed.dimmable>:not(.dimmer){filter: blur(20px) grayscale(0.7) !important;}
 
 .ui.grid .row>.column{padding: 0 !important;}
+.horizontal.menu :before{display: none};
