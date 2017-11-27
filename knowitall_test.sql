@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 16, 2017 at 05:28 AM
+-- Generation Time: Nov 28, 2017 at 12:27 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -82,18 +82,19 @@ CREATE TABLE `survey` (
   `rating_average` double NOT NULL,
   `create_time` varchar(45) DEFAULT NULL,
   `survey_tags` varchar(1000) NOT NULL,
-  `voter_number` int(45) NOT NULL
+  `voter_number` int(45) NOT NULL,
+  `close_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `survey`
 --
 
-INSERT INTO `survey` (`survey_id`, `survey_title`, `user_id`, `rating_average`, `create_time`, `survey_tags`, `voter_number`) VALUES
-('P0000000001', 'Admin Poll 1', '9999999999', 0, '2017-11-05', ' Admin Poll 1', 0),
-('P0000000002', 'Admin Poll 1', '9999999999', 0, '2017-11-05', ' Admin Poll 1', 0),
-('R0000000001', 'Admin Rating 1', '9999999999', 0, '2017-11-05', ' Admin Rating 1', 0),
-('R0000000002', 'Admin Rating 2', '9999999999', 0, '2017-11-05', ' Admin Rating 2', 0);
+INSERT INTO `survey` (`survey_id`, `survey_title`, `user_id`, `rating_average`, `create_time`, `survey_tags`, `voter_number`, `close_time`) VALUES
+('P0000000001', 'Admin Poll 1', '9999999999', 0, '2017-11-05', ' Admin Poll 1', 0, '2017-11-27 23:26:46'),
+('P0000000002', 'Admin Poll 1', '9999999999', 0, '2017-11-05', ' Admin Poll 1', 0, '2017-11-27 23:26:46'),
+('R0000000001', 'Admin Rating 1', '9999999999', 0, '2017-11-05', ' Admin Rating 1', 0, '2017-11-27 23:26:46'),
+('R0000000002', 'Admin Rating 2', '9999999999', 0, '2017-11-05', ' Admin Rating 2', 0, '2017-11-27 23:26:46');
 
 -- --------------------------------------------------------
 
@@ -198,7 +199,7 @@ INSERT INTO `user` (`user_id`, `usc_email`, `usc_id`, `password`, `user_name`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_page`
+-- Table structure for table `user_activity`
 --
 
 CREATE TABLE `user_activity` (
