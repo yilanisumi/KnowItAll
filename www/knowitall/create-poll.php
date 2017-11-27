@@ -27,7 +27,7 @@
         <label>Title</label>
         <input type="text" name="createTitle" required="true">
       </div>
-      <!-- <div class="field">
+      <div class="field">
         <label>Open Timespan</label>
         <div class="ui selection dropdown">
           <input type="hidden" name="createOpenTime">
@@ -39,9 +39,10 @@
             <li class="item">2 days</li>
             <li class="item">1 week</li>
             <li class="item">2 weeks</li>
+            <li class="item">2 seconds</li>
           </ul>
         </div>
-      </div> -->
+      </div>
       <div class="field">
         <label>Options</label>
         <div class="custom-pad-vert-small">

@@ -7,7 +7,7 @@
   $stags = $_POST["tags"];
   $userid = $_SESSION["id"];
   date_default_timezone_set('America/Los_Angeles');
-  $stime = date("Y-m-d", time());
+  $stime = date("Y-m-d H:i:s");
 
   // process frequent tags 
   include("database-connector.php");
@@ -52,8 +52,25 @@
   }
   $surveyid = "R".$surveyid;
 
-  $sql = $conn->prepare("INSERT INTO survey (create_time, rating_average, survey_id, survey_tags, survey_title, user_id, voter_number) VALUES (?, 0.0, ?, ?, ?, ?, 0);");
-  $sql->bind_param('sssss', $stime, $surveyid, $stags, $stitle, $userid);
+  $ctime = $_POST['createOpenTime'];
+  echo $ctime;
+  $currentTime = date("Y-m-d H:i:s");  
+  if(strcmp($ctime, "2 seconds") == 0){
+    $ctime = date("Y-m-d H:i:s", strtotime($currentTime.' + 2 seconds'));
+  }else if(strcmp($ctime, "1 day") == 0){
+    $ctime = date("Y-m-d H:i:s", strtotime($currentTime.' + 1 days'));
+  }else if(strcmp($ctime, "2 days") == 0){
+    $ctime = date("Y-m-d H:i:s", strtotime($currentTime.' + 2 days'));
+  }else if(strcmp($ctime, "1 week") == 0){
+    $ctime = date("Y-m-d H:i:s", strtotime($currentTime.' + 7 days'));
+  }else if(strcmp($ctime, "2 weeks") == 0){
+    $ctime = date("Y-m-d H:i:s", strtotime($currentTime.' + 14 days'));
+  }else{
+    $ctime = "9999-99-99 99:99:99";    
+  }
+
+  $sql = $conn->prepare("INSERT INTO survey (create_time, rating_average, survey_id, survey_tags, survey_title, user_id, voter_number, close_time) VALUES (?, 0.0, ?, ?, ?, ?, 0, ?);");
+  $sql->bind_param('ssssss', $stime, $surveyid, $stags, $stitle, $userid, $ctime);
   $sql->execute();
   
   $i = 0;
