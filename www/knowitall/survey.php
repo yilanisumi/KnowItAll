@@ -1,5 +1,6 @@
 <?php 
   session_start();
+  date_default_timezone_set('America/Los_Angeles');
   $id = $_GET['id'];
   if(isset($_SESSION['id'])){
     $uscid = $_SESSION['id'];
@@ -51,15 +52,41 @@
           <div class="eight wide column">Created: <?php echo $row['create_time'] ?></div>
           <div class="eight wide column"><a href="user.php?id=<?php echo $row["user_id"] ?>"><span class="float-right">Creator: <?php echo $creator ?></span></a></div>
           <div class="eight wide column"><span>Tags: <?php echo $row['survey_tags'] ?></span></div>
-          <div class="eight wide column"><span class="float-right">Open Until: <?php echo $row['close_time'] ?></span></div>
+          <div class="eight wide column">
+            <span class="float-right">
+              <?php
+              $currentTime = date("Y-m-d H:i:s"); 
+              $closeTime = $row['close_time'];
+              $surveyClosed = strcmp($currentTime, $closeTime);
+              if($surveyClosed > 0) {
+                ?>
+                Survey Closed: <?php echo $row['close_time'];
+              }
+              else {
+                ?>
+                Open Until: <?php echo $row['close_time'];
+              }
+              ?>
+            </span>
+          </div>
         </div>
       </div>
 
       <?php
-        if(strcmp(substr($id, 0, 1), "R") == 0){
+        if($surveyClosed > 0) {
+          ?>
+          <h1 class="custom-pad-vert">Survey is Closed</h1>
+          <?php
+        }
+
+        if(strcmp(substr($id, 0, 1), "R") == 0 && $surveyClosed <= 0){
           include("show-rating-results.php");
-        }else if(strcmp(substr($id, 0, 1), "P") == 0){
+        }else if(strcmp(substr($id, 0, 1), "R") == 0 && $surveyClosed > 0){
+          include("show-rating-results-no-dim.php");
+        }else if(strcmp(substr($id, 0, 1), "P") == 0 && $surveyClosed <= 0){
           include("show-poll-results.php");
+        }else if(strcmp(substr($id, 0, 1), "P") == 0 && $surveyClosed > 0){
+          include("show-poll-results-no-dim.php");
         }else{
           header("Location: home-search.php");
         }
@@ -69,17 +96,20 @@
       <div class="fluid row custom-margin-hor">
         
         <?php
-          if(isset($_SESSION['id'])){
-            if(strcmp(substr($id, 0, 1), "R") == 0){
-              include("rating-temp.php");
-            }else if(strcmp(substr($id, 0, 1), "P") == 0){
-              include("poll-temp.php");
+          if($surveyClosed <= 0) {
+            if(isset($_SESSION['id'])){
+              if(strcmp(substr($id, 0, 1), "R") == 0){
+                include("rating-temp.php");
+              }else if(strcmp(substr($id, 0, 1), "P") == 0){
+                include("poll-temp.php");
+              }else{
+                header("Location: home-search.php");
+              }
             }else{
-              header("Location: home-search.php");
+              include("login-message.php");
             }
-          }else{
-            include("login-message.php");
           }
+
           $sql = $conn->prepare("SELECT * FROM survey_comments WHERE survey_id = ? ORDER BY comment_time ASC;");
           $sql->bind_param('s', $id);
           $sql->execute();
@@ -99,7 +129,7 @@
           <span class="header row">Comments (<?php echo $j ?>)</span>
 
           <?php 
-            if(isset($_SESSION['id'])){
+            if(isset($_SESSION['id']) && $surveyClosed <= 0){
               include("comment-form.php");
             }
           ?>
