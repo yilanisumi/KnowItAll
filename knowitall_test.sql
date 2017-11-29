@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 29, 2017 at 08:59 PM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.9
+-- Host: 127.0.0.1
+-- Generation Time: Nov 29, 2017 at 09:06 PM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -51,9 +51,9 @@ CREATE TABLE `frequent_tag` (
 INSERT INTO `frequent_tag` (`tag`, `freq`) VALUES
 ('Admin', 4),
 ('Poll', 2),
-('1', 3),
+('1', 2),
 ('Rating', 2),
-('2', 1);
+('2', 2);
 
 -- --------------------------------------------------------
 
@@ -91,10 +91,10 @@ CREATE TABLE `survey` (
 --
 
 INSERT INTO `survey` (`survey_id`, `survey_title`, `user_id`, `rating_average`, `create_time`, `survey_tags`, `voter_number`, `close_time`) VALUES
-('P0000000001', 'Admin Poll 1', '9999999999', 0, '2017-11-05', ' Admin Poll 1', 0, ''),
-('P0000000002', 'Admin Poll 1', '9999999999', 0, '2017-11-05', ' Admin Poll 1', 0, ''),
-('R0000000001', 'Admin Rating 1', '9999999999', 0, '2017-11-05', ' Admin Rating 1', 0, ''),
-('R0000000002', 'Admin Rating 2', '9999999999', 0, '2017-11-05', ' Admin Rating 2', 0, '');
+('P0000000001', 'Admin Poll 1', '9999999999', 0, '2017-11-29 12:05:48', ' Admin Poll 1', 0, '9999-99-99 99:99:99'),
+('P0000000002', 'Admin Poll 2', '9999999999', 0, '2017-11-29 12:06:35', ' Admin Poll 2', 0, '9999-99-99 99:99:99'),
+('R0000000001', 'Admin Rating 1', '9999999999', 0, '2017-11-29 12:05:59', ' Admin Rating 1', 0, '9999-99-99 99:99:99'),
+('R0000000002', 'Admin Rating 2', '9999999999', 0, '2017-11-29 12:06:14', ' Admin Rating 2', 0, '9999-99-99 99:99:99');
 
 -- --------------------------------------------------------
 
@@ -127,9 +127,9 @@ CREATE TABLE `survey_options` (
 --
 
 INSERT INTO `survey_options` (`survey_id`, `option_id`, `option_string`, `voter_number`) VALUES
-('P0000000001', 1, '1', 0),
-('P0000000001', 2, '2', 0),
-('P0000000001', 3, '3', 0),
+('P0000000001', 1, 'a', 0),
+('P0000000001', 2, 'b', 0),
+('P0000000001', 3, 'c', 0),
 ('R0000000001', 1, '', 0),
 ('R0000000001', 2, '', 0),
 ('R0000000001', 3, '', 0),
@@ -150,9 +150,9 @@ INSERT INTO `survey_options` (`survey_id`, `option_id`, `option_string`, `voter_
 ('R0000000002', 8, '', 0),
 ('R0000000002', 9, '', 0),
 ('R0000000002', 10, '', 0),
-('P0000000002', 1, 'a', 0),
-('P0000000002', 2, 'v', 0),
-('P0000000002', 3, 'd', 0);
+('P0000000002', 1, '1', 0),
+('P0000000002', 2, '2', 0),
+('P0000000002', 3, '3', 0);
 
 -- --------------------------------------------------------
 
@@ -209,6 +209,16 @@ CREATE TABLE `user_activity` (
   `option_id` int(45) NOT NULL,
   `action_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `user_activity`
+--
+
+INSERT INTO `user_activity` (`user_id`, `action`, `survey_id`, `option_id`, `action_time`) VALUES
+('9999999999', 2, 'P0000000001', -99, '2017-11-29 20:05:48'),
+('9999999999', 2, 'R0000000001', -99, '2017-11-29 20:05:59'),
+('9999999999', 2, 'R0000000002', -99, '2017-11-29 20:06:14'),
+('9999999999', 2, 'P0000000002', -99, '2017-11-29 20:06:35');
 
 -- --------------------------------------------------------
 
