@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 28, 2017 at 12:27 AM
+-- Generation Time: Nov 29, 2017 at 08:59 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -83,7 +83,7 @@ CREATE TABLE `survey` (
   `create_time` varchar(45) DEFAULT NULL,
   `survey_tags` varchar(1000) NOT NULL,
   `voter_number` int(45) NOT NULL,
-  `close_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `close_time` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -91,10 +91,10 @@ CREATE TABLE `survey` (
 --
 
 INSERT INTO `survey` (`survey_id`, `survey_title`, `user_id`, `rating_average`, `create_time`, `survey_tags`, `voter_number`, `close_time`) VALUES
-('P0000000001', 'Admin Poll 1', '9999999999', 0, '2017-11-05', ' Admin Poll 1', 0, '2017-11-27 23:26:46'),
-('P0000000002', 'Admin Poll 1', '9999999999', 0, '2017-11-05', ' Admin Poll 1', 0, '2017-11-27 23:26:46'),
-('R0000000001', 'Admin Rating 1', '9999999999', 0, '2017-11-05', ' Admin Rating 1', 0, '2017-11-27 23:26:46'),
-('R0000000002', 'Admin Rating 2', '9999999999', 0, '2017-11-05', ' Admin Rating 2', 0, '2017-11-27 23:26:46');
+('P0000000001', 'Admin Poll 1', '9999999999', 0, '2017-11-05', ' Admin Poll 1', 0, ''),
+('P0000000002', 'Admin Poll 1', '9999999999', 0, '2017-11-05', ' Admin Poll 1', 0, ''),
+('R0000000001', 'Admin Rating 1', '9999999999', 0, '2017-11-05', ' Admin Rating 1', 0, ''),
+('R0000000002', 'Admin Rating 2', '9999999999', 0, '2017-11-05', ' Admin Rating 2', 0, '');
 
 -- --------------------------------------------------------
 
